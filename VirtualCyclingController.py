@@ -69,6 +69,9 @@ class VirtualCyclingController:
         if angle != 0:
             joystick_value *= angle / abs_angle
         
+        if abs_angle < a_min:
+            joystick_value = 0
+
         self.gamepad.left_joystick_float(joystick_value, 0)
 
     def control_rotation(self, distance, body_presence):
