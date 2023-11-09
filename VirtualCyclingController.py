@@ -34,6 +34,24 @@ class VirtualCyclingController:
     def midpoint(point1, point2):
         return (int((point1[0] + point2[0]) / 2), int((point1[1] + point2[1]) / 2))
 
+    def control_pedaling(self, hand, shoulder):
+        if hand[1] < shoulder[1]:
+            print("levantou")
+            self.gamepad.left_trigger_float(0.8)
+            self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_A)
+            self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER)
+            self.rpm = 0
+            self.tick = 0
+        elif self.rpm >= 40:
+            self.gamepad.left_trigger_float(0.0)
+            self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER)
+            self.gamepad.press_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_A)
+        elif self.rpm < 40:
+            self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER)
+            self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_A)
+        else:
+            self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER)
+            self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_A)
 
     def control_rotation(self, distance, body_presence):
         try:
@@ -87,6 +105,9 @@ class VirtualCyclingController:
                     self.control_rotation(distance, body)
                     mid_point = self.midpoint(body[24], body[23])
                     angle = self.calculate_angle(mid_point, body[0])
+
+                    self.control_pedaling(body[19], body[11])
+
                     cv2.putText(frame, f"Distance: {distance} RPM: {int(self.rpm)} Angle: {angle}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
                     cv2.line(frame,body[28],body[24],(255,0,0),2)
                 except Exception as e:
