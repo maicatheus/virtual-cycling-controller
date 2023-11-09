@@ -50,12 +50,13 @@ class VirtualCyclingController:
             self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER)
             self.gamepad.press_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_A)
         elif self.rpm < 40:
+            self.gamepad.left_trigger_float(0)
             self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER)
             self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_A)
         else:
+            self.gamepad.left_trigger_float(0)
             self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER)
             self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_A)
-            self.gamepad.left_trigger_float(0)
 
 
     
