@@ -25,6 +25,15 @@ class VirtualCyclingController:
     def calculate_rpm(time_frame):
         return 60 * 4 / time_frame
 
+    @staticmethod
+    def calculate_angle(point1, point2):
+        theta = math.atan((point2[0] - point1[0])/(point2[1] - point1[1]))
+        return int(theta*180/math.pi)
+
+    @staticmethod
+    def midpoint(point1, point2):
+        return (int((point1[0] + point2[0]) / 2), int((point1[1] + point2[1]) / 2))
+
 
     def control_rotation(self, distance, body_presence):
         try:
@@ -76,8 +85,9 @@ class VirtualCyclingController:
                 try:
                     distance = self.calculate_distance(body[28], body[24])
                     self.control_rotation(distance, body)
-
-                    cv2.putText(frame, f"Distance: {distance} RPM: {int(self.rpm)}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+                    mid_point = self.midpoint(body[24], body[23])
+                    angle = self.calculate_angle(mid_point, body[0])
+                    cv2.putText(frame, f"Distance: {distance} RPM: {int(self.rpm)} Angle: {angle}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
                     cv2.line(frame,body[28],body[24],(255,0,0),2)
                 except Exception as e:
                     print(f"Error processing landmarks: {e}")
