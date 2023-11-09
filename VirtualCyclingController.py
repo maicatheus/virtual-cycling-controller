@@ -36,7 +36,6 @@ class VirtualCyclingController:
 
     def control_pedaling(self, hand, shoulder):
         if hand[1] < shoulder[1]:
-            print("levantou")
             self.gamepad.left_trigger_float(0.8)
             self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_A)
             self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER)
