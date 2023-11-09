@@ -55,6 +55,7 @@ class VirtualCyclingController:
         else:
             self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER)
             self.gamepad.release_button(vg.XUSB_BUTTON.XUSB_GAMEPAD_A)
+            self.gamepad.left_trigger_float(0)
 
 
     
