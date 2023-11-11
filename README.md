@@ -1,8 +1,12 @@
 # Controlador de Ciclismo Virtual
 
-![Giff pedalando](https://i.ibb.co/VtVKYsc/Whats-App-Video-2023-11-11-at-16-48-24-1.gif)
 
-Este é um programa em Python que utiliza visão computacional e entrada de gamepad virtual para criar um controlador de ciclismo virtual. Ele permite que você controle um jogo (GTA V, no meu caso.. Mas se aplica a outros games) pedalando e virando na frente de uma câmera. O programa utiliza as seguintes tecnologias:
+
+Este é um programa em Python que utiliza visão computacional e entrada de gamepad virtual para criar um controlador de ciclismo virtual. Ele permite que você controle um jogo (GTA V, no meu caso.. Mas se aplica a outros games) pedalando e virando na frente de uma câmera. 
+
+![giff pedalando](https://github.com/maicatheus/virtual-cycling-controller/assets/52088266/d8cb5351-2a9b-4691-9d6f-bab1a267d856)
+
+O programa utiliza as seguintes tecnologias:
 
 - OpenCV para capturar frames da câmera e processamento de imagem.
 - Mediapipe para estimativa de pose, o que ajuda a detectar os pontos de referência do corpo do usuário.
