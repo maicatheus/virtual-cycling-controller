@@ -87,7 +87,7 @@ class VirtualCyclingController:
                 
                 if self.tick ==1:
                     self.start_time = time.time()
-                if self.tick == 9:
+                if self.tick == 4:
                     self.end_time = time.time()
                     self.flag = False
                     temp = [self.start_time,self.end_time]
@@ -95,7 +95,7 @@ class VirtualCyclingController:
                     self.tick = 0
                     self.rpm = self.calculate_rpm(time_total)  
 
-                if(self.tick > 1 and (abs(self.start_time - time.time()) > 5 or abs(self.end_time - time.time()) > 5) ):
+                if((abs(self.start_time - time.time()) > 2 or abs(self.end_time - time.time()) > 2) ):
                     self.rpm = 0
                     self.tick = 0
                     self.flag = False
@@ -130,7 +130,7 @@ class VirtualCyclingController:
                     self.control_pedaling(body[19], body[11])
                     self.steering_control(angle)
 
-                    cv2.putText(frame, f"Distance: {distance} RPM: {int(self.rpm)} Angle: {angle}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+                    cv2.putText(frame, f"Dist: {distance} RPM: {int(self.rpm)} Angle: {angle}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
                     cv2.line(frame,body[28],body[24],(255,0,0),2)
                 except Exception as e:
                     print(f"Error processing landmarks: {e}")
