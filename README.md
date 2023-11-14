@@ -34,4 +34,4 @@ Antes de executar o código, você precisará instalar as seguintes bibliotecas 
 Você pode instalar essas dependências usando o `pip`:
 
 ```bash
-pip install opencv-python mediapipe vgamepad
+pip install -r requirements.txt
